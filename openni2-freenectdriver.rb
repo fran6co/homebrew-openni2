@@ -12,6 +12,10 @@ class Openni2Freenectdriver < Formula
   depends_on :python
   depends_on 'libfreenect'
 
+  def patches
+    ["https://github.com/fran6co/OpenNI2-FreenectDriver/commit/5d12bce5057b7afe5677e584f4ed4d86ce249877.patch"]
+  end
+
   def install
     system python, 'waf', 'configure', 'build'
 
