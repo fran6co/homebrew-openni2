@@ -11,13 +11,14 @@ class Openni2 < Formula
   depends_on :python
   depends_on 'libusb' => 'universal'
   depends_on 'doxygen' => :build
+  
+  def patches
+    "https://github.com/fran6co/OpenNI2-FreenectDriver/commit/c304d0884f31d3e3c8d888094c6edde74c683385.patch"
+  end
 
   def install
     # Universal build
     ENV.universal_binary
-
-    # stdlib of clang changed since mavericks
-    ENV.cxx += ' -stdlib=libstdc++' if ENV.compiler == :clang && MacOS.version >= :mavericks
 
     # Build
     system 'make', 'all', 'doc'
